@@ -1,0 +1,77 @@
+--- cobbler.spec	2014-10-10 16:05:07.216991408 +0100
++++ cobbler.spec.new	2014-10-27 17:42:41.530989539 +0000
+@@ -2,14 +2,18 @@
+ 
+ %define _binaries_in_noarch_packages_terminate_build 0
+ %global debug_package %{nil}
++%global packager <ericsson.rstate>
+ Summary: Boot server configurator
+-Name: cobbler
++Name: EXTRlitpcobbler_CXP9030601
+ License: GPLv2+
+ AutoReq: no
+ Version: 2.0.11
+-Release: 1%{?dist}
+-Source0: cobbler-%{version}.tar.gz
++Release: 1
++Packager: %{packager}
++Source0: EXTRlitpcobbler_CXP9030601-%{version}.tar.gz
+ Group: Applications/System
++Provides: cobbler = <cobbler.version>
++Provides: config(cobbler) = <cobbler.version>
+ Requires: python >= 2.3
+ %if 0%{?suse_version} >= 1000
+ Requires: apache2
+@@ -64,14 +68,13 @@
+ Requires: python(abi) >= %{pyver}
+ %endif
+ 
+-BuildRequires: PyYAML
+-BuildRequires: python-cheetah
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+ BuildArch: noarch
+ Url: http://fedorahosted.org/cobbler
+ 
+ %description
+ 
++Cobbler <cobbler.version> repackaged by Ericsson from Cobbler source code.
+ Cobbler is a network install server.  Cobbler 
+ supports PXE, virtualized installs, and 
+ reinstalling existing Linux machines.  The last two 
+@@ -305,15 +308,17 @@
+ 
+ %defattr(-,root,root)
+ %if 0%{?fedora} > 8 || 0%{?rhel} >= 6
+-%{python_sitelib}/cobbler*.egg-info
++%{python_sitelib}/EXTRlitpcobbler*.egg-info
+ %endif
+ %doc AUTHORS CHANGELOG README COPYING
+ 
+-%package -n koan
++%package -n EXTRlitpkoan_CXP9030602
+ 
+ Summary: Helper tool that performs cobbler orders on remote machines.
++Packager: %{packager}
+ Group: Applications/System
+ Requires: python >= 1.5
++Provides: koan = <koan.version>
+ BuildRequires: python-devel
+ %if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
+ %{!?pyver: %define pyver %(%{__python} -c "import sys ; print sys.version[:3]")}
+@@ -330,13 +335,14 @@
+ Url: http://fedorahosted.org/cobbler/
+ 
+ 
+-%description -n koan
++%description -n EXTRlitpkoan_CXP9030602
+ 
++Koan <cobbler.version> repackaged by Ericsson from Cobbler source code.
+ Koan stands for kickstart-over-a-network and allows for both
+ network installation of new virtualized guests and reinstallation 
+ of an existing system.  For use with a boot-server configured with Cobbler
+ 
+-%files -n koan
++%files -n EXTRlitpkoan_CXP9030602
+ %defattr(-,root,root)
+ # FIXME: need to generate in setup.py
+ #%if 0%{?fedora} > 8

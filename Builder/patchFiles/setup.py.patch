@@ -1,0 +1,19 @@
+--- setup.py	2014-08-08 12:43:35.117449646 +0100
++++ setup.py.new	2014-08-08 13:06:01.438284004 +0100
+@@ -13,6 +13,7 @@
+ import time
+ 
+ VERSION = "2.0.11"
++VERSION_3PP = "<change_me>"
+ SHORT_DESC = "Network Boot and Update Server"
+ LONG_DESC = """
+ Cobbler is a network install server.  Cobbler supports PXE, virtualized installs, and reinstalling existing Linux machines.  The last two modes use a helper tool, 'koan', that integrates with cobbler.  Cobbler's advanced features include importing distributions from DVDs and rsync mirrors, kickstart templating, integrated yum mirroring, and built-in DHCP/DNS Management.  Cobbler has a XMLRPC API for integration with other applications.  There is also a web interface.
+@@ -145,7 +146,7 @@
+     dj_js        = "/var/www/cobbler_webui_content/"
+ 
+     setup(
+-        name="cobbler",
++        name = "EXTRlitpcobbler_CXP9030601",
+         version = VERSION,
+         author = "Michael DeHaan",
+         author_email = "mdehaan@redhat.com",

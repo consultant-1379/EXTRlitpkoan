@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ericsson.nms.litp</groupId>
+    <artifactId>EXTRlitpkoan_CXP9030602</artifactId>
+    <packaging>pom</packaging>
+    <name>[${project.artifactId}] RPM module</name>
+    <description>LITP Koan</description>
+
+    <parent>
+        <groupId>com.ericsson.nms.litp</groupId>
+        <artifactId>EXTRlitpkoan</artifactId>
+        <version>2.2.2-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <publish_artifact>true</publish_artifact>
+        <packaging.type>rpm</packaging.type>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                    <executions>
+                        <execution>
+                            <id>Copy Cobbler RPM</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>target/</outputDirectory>
+                                <resources>
+                                   <resource>
+                                       <directory>../Builder/target/src/cobbler-${cobbler.version}/rpm-build/</directory>
+                                       <filtering>false</filtering>
+                                           <includes>
+                                               <include>EXTRlitpkoan_CXP9030602-*.noarch.rpm</include>
+                                           </includes>
+                                   </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>attach_deliver_EXTRlitpkoan</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts> 
+                                <artifact>
+                                    <file>${basedir}/target/EXTRlitpkoan_CXP9030602-${rpm.version}.noarch.rpm</file>
+                                    <type>rpm</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build> 
+</project>

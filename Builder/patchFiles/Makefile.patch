@@ -1,0 +1,11 @@
+--- Makefile	2011-04-20 13:38:35.000000000 +0100
++++ Makefile.new	2014-08-08 12:55:39.255784189 +0100
+@@ -105,7 +105,7 @@
+ 	--define "_rpmdir %{_topdir}" \
+ 	--define "_srcrpmdir %{_topdir}" \
+ 	--define "_specdir %{_topdir}" \
+-	--define '_rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm' \
++	--define '_rpmfilename %%{NAME}-%%{VERSION}.%%{ARCH}.rpm' \
+ 	--define "_sourcedir  %{_topdir}" \
+ 	-ba cobbler.spec
+ 
